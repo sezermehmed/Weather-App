@@ -17,18 +17,25 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback("Unable to find location", undefined);
         } else {
+            console.log(body.current)
             callback(
                 undefined,
+                " Observation time: " + body.current.observation_time + "   " +
                 body.current.weather_descriptions +
-                " It is currently " +
+                " IT IS CURRENTLY " +
                 body.current.temperature +
-                " degress out. There is a " +
+                "   DEGRESS OUT. There is a " +
                 body.current.precip +
-                "% chance of rain."
+                "   % chance of rain. " +
+                "   Wind speed is " + body.current.wind_speed +
+                "   Wind_degree is " + body.current.wind_degree +
+                "   Pressure: " + body.current.pressure +
+                "   UV index: " + body.current.uv_index +
+                "   Humidity: " + body.current.humidity + 
+                "   Visibility: " + body.current.visibility    
             );
         }
     });
 };
 
 module.exports = forecast;
-//const url ='http://api.weatherstack.com/current?access_key=e481647c593730d07e56033490e25af2&query=' + app.address +'&units=m&limit=1';
